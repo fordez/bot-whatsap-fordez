@@ -1,7 +1,10 @@
 const qrcode = require('qrcode-terminal');
 
-const { Client } = require('whatsapp-web.js');
-const client = new Client();
+const { Client, LocalAuth } = require('whatsapp-web.js');
+
+const client = new Client({
+    authStrategy: new LocalAuth({clientId: "bot-fordez"})
+});
 
 client.on('qr', qr => {
     qrcode.generate(qr, {small: true});
